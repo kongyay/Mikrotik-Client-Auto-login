@@ -573,12 +573,6 @@
     pirates "^4.0.0"
     source-map-support "^0.5.9"
 
-"@babel/runtime@^7.4.5":
-  version "7.4.5"
-  resolved "https://npm.dev.creditok.co/@babel%2fruntime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
-  dependencies:
-    regenerator-runtime "^0.13.2"
-
 "@babel/template@^7.1.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://npm.dev.creditok.co/@babel%2ftemplate/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -1383,8 +1377,8 @@ locate-path@^3.0.0:
     path-exists "^3.0.0"
 
 lodash@^4.17.11:
-  version "4.17.11"
-  resolved "https://npm.dev.creditok.co/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
 
 long-timeout@0.1.1:
   version "0.1.1"
