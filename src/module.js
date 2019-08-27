@@ -11,7 +11,7 @@ module.exports = async function reLoginJob () {
   console.log(`[${new Date().toLocaleString()}] Re-login.....`)
     
   try {
-    await logout()
+    // await logout()
     await login(process.env.LOGIN, process.env.PASSWORD)
     console.log(`[${new Date().toLocaleString()}] DONE.....`)
   }

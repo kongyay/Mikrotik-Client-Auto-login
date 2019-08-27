@@ -23,7 +23,7 @@ function () {
     console.log(`[${new Date().toLocaleString()}] Re-login.....`);
 
     try {
-      yield logout();
+      // await logout()
       yield login(process.env.LOGIN, process.env.PASSWORD);
       console.log(`[${new Date().toLocaleString()}] DONE.....`);
     } catch (e) {
