@@ -2,8 +2,14 @@ require('dotenv').config()
 const { hexMD5 } = require('./md5')
 const fetch = require('node-fetch')
 
-export default async function reLoginJob () {
+module.exports = async function reLoginJob () {
+  const isConnected = await checkInternet();
+  if(isConnected) {
+    console.log(`[${new Date().toLocaleString()}] Skip: Already connected`)
+    return;
+  }
   console.log(`[${new Date().toLocaleString()}] Re-login.....`)
+    
   try {
     await logout()
     await login(process.env.LOGIN, process.env.PASSWORD)
@@ -62,4 +68,13 @@ async function logout() {
   await fetch(process.env.URL+'/logout')
   .then(res => res.text())
   // .then(body => console.log(body))
+}
+
+
+function checkInternet() {
+  return new Promise((resolve,reject) => {
+    fetch('https://www.google.com/')
+    .then(res => resolve(true))
+    .catch(err => resolve(false))
+  })  
 }

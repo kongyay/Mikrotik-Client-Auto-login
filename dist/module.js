@@ -1,8 +1,3 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = reLoginJob;
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -14,12 +9,17 @@ const _require = require('./md5'),
 
 const fetch = require('node-fetch');
 
-function reLoginJob() {
-  return _reLoginJob.apply(this, arguments);
-}
+module.exports =
+/*#__PURE__*/
+function () {
+  var _reLoginJob = _asyncToGenerator(function* () {
+    const isConnected = yield checkInternet();
 
-function _reLoginJob() {
-  _reLoginJob = _asyncToGenerator(function* () {
+    if (isConnected) {
+      console.log(`[${new Date().toLocaleString()}] Skip: Already connected`);
+      return;
+    }
+
     console.log(`[${new Date().toLocaleString()}] Re-login.....`);
 
     try {
@@ -30,8 +30,13 @@ function _reLoginJob() {
       console.log(`[${new Date().toLocaleString()}] Error: ${e.message}`);
     }
   });
-  return _reLoginJob.apply(this, arguments);
-}
+
+  function reLoginJob() {
+    return _reLoginJob.apply(this, arguments);
+  }
+
+  return reLoginJob;
+}();
 
 function encryptPassword(_x) {
   return _encryptPassword.apply(this, arguments);
@@ -96,4 +101,10 @@ function _logout() {
     yield fetch(process.env.URL + '/logout').then(res => res.text()); // .then(body => console.log(body))
   });
   return _logout.apply(this, arguments);
+}
+
+function checkInternet() {
+  return new Promise((resolve, reject) => {
+    fetch('https://www.google.com/').then(res => resolve(true)).catch(err => resolve(false));
+  });
 }
